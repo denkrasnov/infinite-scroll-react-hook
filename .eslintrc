@@ -1,0 +1,82 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended", 
+    "prettier/react",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "plugins": [
+    "@typescript-eslint", 
+    "react-hooks",
+    "react",
+    "import"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          ["sibling", "parent", "internal", "index", "unknown"]
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "react/jsx-sort-props": ["error"],
+    "react/button-has-type": 0,
+    "import/prefer-default-export": 0,
+    "jsx-a11y/label-has-associated-control": [ 2,
+      {
+        "assert": "either",
+        "depth": 3
+      }
+    ],
+    "prettier/prettier": ["error", {
+      "endOfLine": "auto"
+    }]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-unused-vars": "off",
+        "no-undef": "off",
+        "no-restricted-globals": "off",
+        "space-infix-ops": "off",
+        "react/prop-types": "off",
+        "react/default-props-match-prop-types": "off"
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".tsx", ".ts"]
+      },
+      "eslint-import-resolver-typescript": true
+    }
+  },
+  "globals": {
+    "window": true,
+    "define": true,
+    "require": true,
+    "module": true
+  }
+}
