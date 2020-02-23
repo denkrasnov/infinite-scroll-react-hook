@@ -17,9 +17,12 @@ yarn add infinite-loader-react-hook
 ```js
 import useInfiniteLoader from 'infinite-loader-react-hook';
 
-const [items, setRef] = useInfiniteLoader(allIetms: any[], threshold?: number);
+const Component = () => {
 
-<div ref={setRef}>
-    {items}
-</div>
+  const [items, setRef] = useInfiniteLoader(allItems: any[], threshold?: number);
+
+  return <div ref={setRef}>
+          {items}
+         </div>
+}
 ```

@@ -1,6 +1,6 @@
 {
   "name": "infinite-loader-react-hook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react hook for infinite loading",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

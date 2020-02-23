@@ -6,6 +6,13 @@ export type SetRefType = (node: Element | null) => void;
 
 export type ReturnType<T> = [T[], SetRefType];
 
+/**
+ * @param {array} allItems
+ * @param {number} [threshold=300] A number of px till the end of scrolling, to define
+ * when more items should be loaded
+ * @returns {array} [items, setRef]: items - every time +10 items are added. setRef - a callback
+ * to get ref of the scrollable parent element.
+ */
 const useInfiniteLoader = <T extends {}>(
   items: T[],
   threshold = 300
