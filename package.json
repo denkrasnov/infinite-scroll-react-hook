@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DenisKrasnov/infinite-scroll-react-hook.git"
+    "url": "git+https://github.com/denkrasnov/infinite-scroll-react-hook.git"
   },
   "author": "Denis Krasnov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DenisKrasnov/infinite-scroll-react-hook/issues"
+    "url": "https://github.com/denkrasnov/infinite-scroll-react-hook/issues"
   },
-  "homepage": "https://github.com/DenisKrasnov/infinite-scroll-react-hook#readme",
+  "homepage": "https://github.com/denkrasnov/infinite-scroll-react-hook#readme",
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
