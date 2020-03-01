@@ -1,12 +1,12 @@
 {
-  "name": "infinite-loader-react-hook",
+  "name": "infinite-scroll-react-hook",
   "version": "0.0.2",
-  "description": "react hook for infinite loading",
+  "description": "react hook for infinite scrolling",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "tsc",
+    "prepare": "npm run test & npm run lint & npm run build",
     "test": "jest --colors",
     "test:coverage": "jest --coverage --colors --no-cache",
     "lint": "eslint --ext .js,.ts,.tsx --max-warnings 0 .",
@@ -16,18 +16,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DenisKrasnov/infinite-loader-react-hook.git"
+    "url": "git+https://github.com/DenisKrasnov/infinite-scroll-react-hook.git"
   },
   "author": "Denis Krasnov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DenisKrasnov/infinite-loader-react-hook/issues"
+    "url": "https://github.com/DenisKrasnov/infinite-scroll-react-hook/issues"
   },
-  "homepage": "https://github.com/DenisKrasnov/infinite-loader-react-hook#readme",
+  "homepage": "https://github.com/DenisKrasnov/infinite-scroll-react-hook#readme",
   "peerDependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "rxjs": "6.5.4"
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",
@@ -49,7 +48,6 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
-    "rxjs": "^6.5.4",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.2"
   }

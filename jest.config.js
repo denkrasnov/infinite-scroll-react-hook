@@ -1,8 +1,6 @@
 module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js"],
-  transform: {
-    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-  },
+  preset: "ts-jest",
   collectCoverageFrom: ["src/**/*.{ts,tsx,js}", "!src/**/{__tests__}/**"],
   coverageThreshold: {
     global: {
@@ -12,5 +10,9 @@ module.exports = {
       lines: 100
     }
   },
-  coveragePathIgnorePatterns: ["!*.d.ts"]
+  coveragePathIgnorePatterns: [
+    "!*.d.ts",
+    "<rootDir>/node_modules/",
+    "<rootDir>/dist/"
+  ]
 };
