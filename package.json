@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run test & npm run lint & npm run build",
+    "prepare": "npm run test && npm run lint && npm run build",
     "test": "jest --colors",
     "test:coverage": "jest --coverage --colors --no-cache",
     "lint": "eslint --ext .js,.ts,.tsx --max-warnings 0 .",
