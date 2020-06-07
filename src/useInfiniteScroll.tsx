@@ -58,7 +58,7 @@ const useInfiniteScroll = <T extends {}>(
     };
   }, [element]);
 
-  const nextItems = element ? stateItems : allItems;
+  const nextItems = element ? stateItems : [];
   return [nextItems, setRef];
 };
 

@@ -24,12 +24,19 @@ const Component = () => {
 
   const [items, setRef] = useInfiniteScroll(allItems, observerOptions);
 
-  return (<div>
+  return (
+          <div>
             {items}
             <div ref={setRef}/>
-         </div>);
+          </div>
+         );
 }
 ```
+`useInfiniteScroll` - is configuread to add +20 items from a provided `allItems` every time the target element intercets the document's viewport or parent element (if provided within `observerOptions` prop);
+
+`setRef` - should get the ref of a target element which will be observed during scrolling. If the target element enters the document's viewport or a parent element (if provided within `observerOptions` prop) then +20 items are added to be displayed.
+
+You can adjust when to start adding +20 additional items by manipulating the target's element position. For example you want to add +20 items during scroll when `200px` left before the end of the items list then you can add custom styles to the target element to achive this: `<div ref={setRef} style="bottom: 400px; position: relative " />`
 
 ### Props
 
