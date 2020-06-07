@@ -1,6 +1,6 @@
 {
   "name": "infinite-scroll-react-hook",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "description": "react hook for infinite scrolling",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

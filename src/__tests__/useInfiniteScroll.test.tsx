@@ -69,7 +69,7 @@ describe("useInfiniteScroll", () => {
         result.current[1](null);
       });
 
-      expect(result.current).toEqual([itemsMock, expect.any(Function)]);
+      expect(result.current).toEqual([[], expect.any(Function)]);
     });
   });
 
