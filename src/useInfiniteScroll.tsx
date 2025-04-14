@@ -18,6 +18,24 @@ const useInfiniteScroll = <T extends {}>(
   const [element, setElement] = useState<Element | null>(null);
 
   const itemsRef = useRef(allItems);
+  const observer = useRef<IntersectionObserver>(null);
+
+  useEffect(() => {
+    const listener = (entries: any) => {
+      const [first] = entries;
+
+      if (first.isIntersecting) {
+        setStateItems(prevItems => {
+          const prevLength = prevItems.length;
+          const nextItems = itemsRef.current.slice(0, prevLength + 20);
+
+          return nextItems.length !== prevLength ? nextItems : prevItems;
+        });
+      }
+    };
+    const interObserver = new IntersectionObserver(listener, observerOptions);
+    observer.current = interObserver;
+  }, [observerOptions]);
 
   const setRef: SetRefType = useCallback(node => {
     if (node) {
@@ -25,34 +43,21 @@ const useInfiniteScroll = <T extends {}>(
     }
   }, []);
 
-  const listener = (entries: any) => {
-    const [first] = entries;
-
-    if (first.isIntersecting) {
-      setStateItems(prevItems => {
-        const prevLength = prevItems.length;
-        const nextItems = itemsRef.current.slice(0, prevLength + 20);
-
-        return nextItems.length !== prevLength ? nextItems : prevItems;
-      });
-    }
-  };
-
-  const observer = useRef(new IntersectionObserver(listener, observerOptions));
-
   useEffect(() => {
     itemsRef.current = allItems;
-    setStateItems(allItems.slice(0, 20));
+    if (allItems.length > 0) {
+      setStateItems(allItems.slice(0, 20));
+    }
   }, [allItems, element]);
 
   useEffect(() => {
     const currentElement = element;
     const currentObserver = observer.current;
-    if (currentElement) {
+    if (currentElement && currentObserver) {
       currentObserver.observe(currentElement);
     }
     return () => {
-      if (currentElement) {
+      if (currentElement && currentObserver) {
         currentObserver.unobserve(currentElement);
       }
     };
