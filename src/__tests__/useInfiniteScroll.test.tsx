@@ -62,6 +62,18 @@ describe("useInfiniteScroll", () => {
       ]);
     });
 
+    it("should return correct data when items is empty array", () => {
+      const items: any[] = [];
+      const { result } = renderHook(() => useInfiniteScroll(items));
+      const html = document.createElement("div");
+
+      act(() => {
+        result.current[1](html);
+      });
+
+      expect(result.current).toEqual([items, expect.any(Function)]);
+    });
+
     it("should return correct data when parentElement does not exist", () => {
       const { result } = renderHook(() => useInfiniteScroll(itemsMock));
 
