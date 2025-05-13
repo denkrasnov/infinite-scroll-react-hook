@@ -25,7 +25,7 @@ const useInfiniteScroll = <T extends {}>(
       const [first] = entries;
 
       if (first.isIntersecting) {
-        setStateItems(prevItems => {
+        setStateItems((prevItems) => {
           const prevLength = prevItems.length;
           const nextItems = itemsRef.current.slice(0, prevLength + 20);
 
@@ -37,7 +37,7 @@ const useInfiniteScroll = <T extends {}>(
     observer.current = interObserver;
   }, [observerOptions]);
 
-  const setRef: SetRefType = useCallback(node => {
+  const setRef: SetRefType = useCallback((node) => {
     if (node) {
       setElement(node);
     }
@@ -47,6 +47,8 @@ const useInfiniteScroll = <T extends {}>(
     itemsRef.current = allItems;
     if (allItems.length > 0) {
       setStateItems(allItems.slice(0, 20));
+    } else {
+      setStateItems(allItems);
     }
   }, [allItems, element]);
 
