@@ -58,7 +58,8 @@ describe("useInfiniteScroll", () => {
 
       expect(result.current).toEqual([
         itemsMock.slice(0, 20),
-        expect.any(Function)
+        expect.any(Function),
+        0
       ]);
     });
 
@@ -71,7 +72,7 @@ describe("useInfiniteScroll", () => {
         result.current[1](html);
       });
 
-      expect(result.current).toEqual([items, expect.any(Function)]);
+      expect(result.current).toEqual([items, expect.any(Function), 0]);
     });
 
     it("should return correct data when parentElement does not exist", () => {
@@ -81,7 +82,7 @@ describe("useInfiniteScroll", () => {
         result.current[1](null);
       });
 
-      expect(result.current).toEqual([[], expect.any(Function)]);
+      expect(result.current).toEqual([[], expect.any(Function), 0]);
     });
   });
 
@@ -125,7 +126,8 @@ describe("useInfiniteScroll", () => {
 
       expect(result.current).toEqual([
         itemsMock.slice(0, 20),
-        expect.any(Function)
+        expect.any(Function),
+        0
       ]);
 
       const [
@@ -136,7 +138,7 @@ describe("useInfiniteScroll", () => {
         observerCallback([mockEntry]);
       });
 
-      expect(result.current).toEqual([itemsMock, expect.any(Function)]);
+      expect(result.current).toEqual([itemsMock, expect.any(Function), 1]);
     });
 
     it("should return correct data when no items to add", () => {
@@ -148,7 +150,7 @@ describe("useInfiniteScroll", () => {
       act(() => {
         result.current[1](html);
       });
-      expect(result.current).toEqual([items, expect.any(Function)]);
+      expect(result.current).toEqual([items, expect.any(Function), 0]);
 
       const [
         [observerCallback]
@@ -158,7 +160,7 @@ describe("useInfiniteScroll", () => {
         observerCallback([mockEntry]);
       });
 
-      expect(result.current).toEqual([items, expect.any(Function)]);
+      expect(result.current).toEqual([items, expect.any(Function), 1]);
     });
   });
 
@@ -182,7 +184,8 @@ describe("useInfiniteScroll", () => {
 
       expect(result.current).toEqual([
         itemsMock.slice(0, 20),
-        expect.any(Function)
+        expect.any(Function),
+        0
       ]);
     });
   });

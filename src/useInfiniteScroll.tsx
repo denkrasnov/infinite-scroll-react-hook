@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 
 export type SetRefType = (node: Element | null) => void;
 
-export type ReturnType<T> = [T[], SetRefType];
+export type ReturnType<T> = [T[], SetRefType, number];
 
 /**
  * @param {array} allItems Items to gradually add.
@@ -11,11 +11,12 @@ export type ReturnType<T> = [T[], SetRefType];
  * to get ref of an element to observe.
  */
 const useInfiniteScroll = <T extends {}>(
-  allItems: T[],
+  allItems?: T[],
   observerOptions?: IntersectionObserverInit
 ): ReturnType<T> => {
   const [stateItems, setStateItems] = useState<T[]>([]);
   const [element, setElement] = useState<Element | null>(null);
+  const [intersectCount, setIntersectCount] = useState(0);
 
   const itemsRef = useRef(allItems);
   const observer = useRef<IntersectionObserver>(null);
@@ -25,11 +26,16 @@ const useInfiniteScroll = <T extends {}>(
       const [first] = entries;
 
       if (first.isIntersecting) {
-        setStateItems(prevItems => {
-          const prevLength = prevItems.length;
-          const nextItems = itemsRef.current.slice(0, prevLength + 20);
+        setIntersectCount(prev => prev + 1);
 
-          return nextItems.length !== prevLength ? nextItems : prevItems;
+        setStateItems(prevItems => {
+          if (itemsRef.current) {
+            const prevLength = prevItems.length;
+            const nextItems = itemsRef.current.slice(0, prevLength + 20);
+
+            return nextItems.length !== prevLength ? nextItems : prevItems;
+          }
+          return prevItems;
         });
       }
     };
@@ -44,11 +50,13 @@ const useInfiniteScroll = <T extends {}>(
   }, []);
 
   useEffect(() => {
-    itemsRef.current = allItems;
-    if (allItems.length > 0) {
-      setStateItems(allItems.slice(0, 20));
-    } else {
-      setStateItems(allItems);
+    if (allItems) {
+      itemsRef.current = allItems;
+      if (allItems.length > 0) {
+        setStateItems(allItems.slice(0, 20));
+      } else {
+        setStateItems(allItems);
+      }
     }
   }, [allItems, element]);
 
@@ -66,7 +74,7 @@ const useInfiniteScroll = <T extends {}>(
   }, [element]);
 
   const nextItems = element ? stateItems : [];
-  return [nextItems, setRef];
+  return [nextItems, setRef, intersectCount];
 };
 
 export default useInfiniteScroll;
